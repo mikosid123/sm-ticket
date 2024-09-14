@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert Ticket Seller</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #002f6c; /* Dark Blue */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 47, 108, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #d32f2f; /* Red */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #002f6c; /* Dark Blue */
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            background-color: #f4f4f4;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group select {
+            appearance: none;
+        }
+        .form-group input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            background-color: #d32f2f; /* Red */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .btn:hover {
+            background-color: #b71c1c; /* Darker Red */
+        }
+        .ticket-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e3f2fd; /* Light Blue */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 47, 108, 0.1);
+        }
+        .ticket-details h4 {
+            margin-top: 0;
+            color: #002f6c; /* Dark Blue */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002f6c; /* Dark Blue */
+            color: white;
+            margin-top: 30px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SM Tickets</h1>
+</header>
+
+<div class="container">
+    <h2>Book Your Concert Tickets</h2>
+    <form id="ticketForm">
+        <div class="form-group">
+            <label for="event">Select Event:</label>
+            <select id="event" required>
+                <option value="" disabled selected>Select an event</option>
+                <option value="rock_concert">Rock Concert</option>
+                <option value="pop_concert">Pop Concert</option>
+                <option value="jazz_concert">Jazz Night</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ticket-type">Ticket Type:</label>
+            <select id="ticket-type" required>
+                <option value="" disabled selected>Select a ticket type</option>
+                <option value="seated">SEATED (5yrs & above)</option>
+                <option value="floor">FLOOR OR SEATED (10yrs & above)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ticket-quantity">Number of Tickets:</label>
+            <input type="number" id="ticket-quantity" min="1" max="10" value="1" required>
+        </div>
+
+        <h3>Payment Method</h3>
+        <div class="form-group">
+            <input type="radio" name="payment-method" value="credit-card" id="credit-card" checked>
+            <label for="credit-card">Credit Card</label>
+        </div>
+        <div class="form-group">
+            <input type="radio" name="payment-method" value="paypal" id="paypal">
+            <label for="paypal">PayPal</label>
+        </div>
+
+        <div class="ticket-details" id="ticketDetails"></div>
+
+        <button type="button" class="btn" onclick="calculateTotal()">Book Now</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 SM Tickets. All rights reserved.</p>
+</footer>
+
+<script>
+    function calculateTotal() {
+        const event = document.getElementById('event').value;
+        const ticketType = document.getElementById('ticket-type').value;
+        const ticketQuantity = parseInt(document.getElementById('ticket-quantity').value);
+
+        let ticketPrice;
+
+        switch (ticketType) {
+            case 'vip':
+                ticketPrice = 150;
+                break;
+            case 'regular':
+                ticketPrice = 80;
+                break;
+            case 'student':
+                ticketPrice = 50;
+                break;
+            default:
+                ticketPrice = 0;
+        }
+
+        const totalCost = ticketPrice * ticketQuantity;
+        document.getElementById('ticketDetails').innerHTML = `
+            <h4>Ticket Summary:</h4>
+            <p>Event: ${event.replace('_', ' ')}</p>
+            <p>Ticket Type: ${ticketType.toUpperCase()}</p>
+            <p>Quantity: ${ticketQuantity}</p>
+            <p>Total Price: $${totalCost}</p>
+        `;
+    }
+</script>
+
+</body>
+</html>
