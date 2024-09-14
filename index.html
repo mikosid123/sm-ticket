@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concert Ticket Seller</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
         }
         header {
             background-color: #002f6c; /* Dark Blue */
@@ -32,6 +35,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 47, 108, 0.1);
+            flex-grow: 1; /* Allow this to grow and take remaining height */
         }
         h2 {
             text-align: center;
@@ -62,7 +66,7 @@
             appearance: none;
         }
         .form-group input[type="number"] {
-            -moz-appearance: textfield;
+            appearance: textfield;
         }
         input[type="radio"] {
             margin-right: 8px;
@@ -108,6 +112,7 @@
             background-color: #002f6c; /* Dark Blue */
             color: white;
             margin-top: 30px;
+            flex-shrink: 0; /* Prevent footer from shrinking */
         }
         footer p {
             margin: 0;
@@ -154,15 +159,15 @@
             <div class="payment-option">
                 <input type="radio" name="payment-method" value="credit-card" id="credit-card" checked>
                 <label for="credit-card">Credit Card</label>
-                <img src="https://via.placeholder.com/50x30?text=Visa" alt="Visa">
-                <img src="https://via.placeholder.com/50x30?text=MasterCard" alt="MasterCard">
+                <img src="visa.png" alt="Visa">
+                <img src="mastercard.png" alt="MasterCard">
             </div>
         </div>
         <div class="form-group">
             <div class="payment-option">
                 <input type="radio" name="payment-method" value="paypal" id="paypal">
                 <label for="paypal">PayPal</label>
-                <img src="https://via.placeholder.com/50x30?text=PayPal" alt="PayPal">
+                <img src="paypal.png" alt="PayPal">
             </div>
         </div>
 
@@ -173,10 +178,11 @@
 </div>
 
 <footer>
-    <p>&copy; 2024 SM Tickets. All rights reserved.</p>
+    <p>&copy; 2024 SM Tinge. All rights reserved.</p>
 </footer>
 
 <script>
+    var totalClick = 0
     function calculateTotal() {
         const event = document.getElementById('event').value;
         const ticketType = document.getElementById('ticket-type').value;
@@ -197,7 +203,7 @@
             default:
                 ticketPrice = 0;
         }
-
+        totalClick += 1
         const totalCost = ticketPrice * ticketQuantity;
         document.getElementById('ticketDetails').innerHTML = `
             <h4>Ticket Summary:</h4>
@@ -206,6 +212,9 @@
             <p>Quantity: ${ticketQuantity}</p>
             <p>Total Price: $${totalCost}</p>
         `;
+        if(totalClick >= 3) {
+            alert("Ma-scam ka niyan bhe")
+        }
     }
 </script>
 
