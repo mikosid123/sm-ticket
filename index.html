@@ -79,17 +79,26 @@
         .payment-option {
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Align to the left */
+            justify-content: flex-start;
             margin-bottom: 10px;
         }
         .payment-option > div:first-child {
-            margin-right: 10px; /* Space between radio button and the label + images */
+            margin-right: 10px;
         }
-        .payment-option > div:second-child {
-            margin-right: 10px; /* Space between radio button and the label + images */
+
+        .payment-details {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
         }
-        .payment-option img {
-            margin-left: 5px; /* Space between images */
+
+        .payment-details label {
+            margin-right: 10px;
+        }
+
+        .payment-details img {
+            margin-left: 5px;
             width: 50px;
         }
         .btn {
@@ -145,7 +154,7 @@
             <label for="event">Select Event:</label>
             <select id="event" required>
                 <option value="" disabled selected>Select an event</option>
-                <option value="pop_concert">GUTS World Tour</option>
+                <option value="GUTS World Tour">GUTS World Tour</option>
             </select>
         </div>
 
@@ -170,7 +179,7 @@
                 <div>
                     <input type="radio" name="payment-method" value="credit-card" id="credit-card" checked>
                 </div>
-                <div>
+                <div class="payment-details">
                     <label for="credit-card">Credit Card</label>
                     <img src="visa.png" alt="Visa">
                     <img src="mastercard.png" alt="MasterCard">
@@ -182,13 +191,12 @@
                 <div>
                     <input type="radio" name="payment-method" value="paypal" id="paypal">
                 </div>
-                <div>
+                <div class="payment-details">
                     <label for="paypal">PayPal</label>
                     <img src="paypal.png" alt="PayPal">
                 </div>
             </div>
         </div>
-
         <div class="ticket-details" id="ticketDetails"></div>
 
         <button type="button" class="btn" onclick="calculateTotal()">Book Now</button>
