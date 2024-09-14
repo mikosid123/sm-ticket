@@ -67,6 +67,15 @@
         input[type="radio"] {
             margin-right: 8px;
         }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .payment-option img {
+            margin-left: 10px;
+            width: 50px;
+        }
         .btn {
             display: block;
             width: 100%;
@@ -129,8 +138,9 @@
             <label for="ticket-type">Ticket Type:</label>
             <select id="ticket-type" required>
                 <option value="" disabled selected>Select a ticket type</option>
-                <option value="seated">SEATED (5yrs & above)</option>
-                <option value="floor">FLOOR OR SEATED (10yrs & above)</option>
+                <option value="vip">VIP ($150)</option>
+                <option value="regular">Regular ($80)</option>
+                <option value="student">Student ($50)</option>
             </select>
         </div>
 
@@ -141,12 +151,19 @@
 
         <h3>Payment Method</h3>
         <div class="form-group">
-            <input type="radio" name="payment-method" value="credit-card" id="credit-card" checked>
-            <label for="credit-card">Credit Card</label>
+            <div class="payment-option">
+                <input type="radio" name="payment-method" value="credit-card" id="credit-card" checked>
+                <label for="credit-card">Credit Card</label>
+                <img src="https://via.placeholder.com/50x30?text=Visa" alt="Visa">
+                <img src="https://via.placeholder.com/50x30?text=MasterCard" alt="MasterCard">
+            </div>
         </div>
         <div class="form-group">
-            <input type="radio" name="payment-method" value="paypal" id="paypal">
-            <label for="paypal">PayPal</label>
+            <div class="payment-option">
+                <input type="radio" name="payment-method" value="paypal" id="paypal">
+                <label for="paypal">PayPal</label>
+                <img src="https://via.placeholder.com/50x30?text=PayPal" alt="PayPal">
+            </div>
         </div>
 
         <div class="ticket-details" id="ticketDetails"></div>
